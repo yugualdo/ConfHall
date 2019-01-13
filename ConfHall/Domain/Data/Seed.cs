@@ -42,6 +42,16 @@
             modelBuilder.Entity<Role>().HasData(role);
             #endregion
 
+
+            #region Feature
+            Feature feature = new Feature
+            {
+                Id = Guid.NewGuid(),
+                Name = "Screen"
+            };
+            modelBuilder.Entity<Feature>().HasData(feature);
+            #endregion
+
             #region Hall
             Hall hall = new Hall
             {
@@ -51,6 +61,15 @@
                 HallType = HallType.EmptyRoom
             };
             modelBuilder.Entity<Hall>().HasData(hall);
+
+            HallFeature hallFeature = new HallFeature
+            {
+                Id = Guid.NewGuid(),
+                HallId = hall.Id,
+                FeatureId = feature.Id
+            };
+            modelBuilder.Entity<HallFeature>().HasData(hallFeature);
+
             #endregion
         }
     }

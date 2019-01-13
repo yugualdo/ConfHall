@@ -44,8 +44,9 @@ namespace ConfHall.Domain.Data
                 entity.Property(e => e.LastName).IsRequired();
             });
 
-            modelBuilder.Entity<HallFeature>().HasKey(x => new { x.HallId, x.FeatureId });
-
+            modelBuilder.Entity<HallFeature>().HasOne(hf => hf.Hall).WithMany(h => h.HallFeatures).HasForeignKey(hf=>hf.HallId);
+            modelBuilder.Entity<HallFeature>().HasOne(hf => hf.Feature).WithMany(h => h.HallFeatures).HasForeignKey(hf=>hf.FeatureId);
+            
             modelBuilder.Seed(hashingService);
         }
 
