@@ -1,4 +1,5 @@
 ﻿using ConfHall.Domain.Entities;
+using ConfHall.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConfHall.Models
 {
-    public class ReservationModel
+    public class ReservationModel:BaseModel<Guid>
     {        
         public virtual Guid HallId { get; set; }      
         public virtual Guid CustomerId { get; set; }

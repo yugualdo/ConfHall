@@ -11,21 +11,21 @@ namespace ConfHall.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HallController : ControllerBase
+    public class ReservationController : ControllerBase
     {
 
-        private IHallService _hallService;
+        private IReservationService _reservationService;
 
-        public HallController(IHallService hallService)
+        public ReservationController(IReservationService reservationService)
         {
-            _hallService = hallService;
+            _reservationService = reservationService;
 
         }
 
 
         // GET: api/Hall
         /// <summary>
-        /// Get all Hall records.
+        /// Get all vehicle records.
         /// </summary>
         /// <returns>IActionResult</returns>
         [HttpGet(Name = "Hall")]
@@ -33,10 +33,10 @@ namespace ConfHall.Controllers
         {
             try
             {
-                var HallList = _hallService.Get();
-                if (HallList != null)
+                var ReservationList = _reservationService.Get();
+                if (ReservationList != null)
                 {
-                    return Ok(HallList);
+                    return Ok(ReservationList);
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace ConfHall.Controllers
         }
 
         /// <summary>
-        /// Return Hall by Id
+        /// Return Reservation by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -62,8 +62,8 @@ namespace ConfHall.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    HallModel HallModel = _hallService.Get(id);
-                    return Ok(HallModel);
+                    ReservationModel ReservationModel = _reservationService.Get(id);
+                    return Ok(ReservationModel);
                 }
                 else
                 {
@@ -77,20 +77,20 @@ namespace ConfHall.Controllers
             }
         }
 
-        // POST: api/Hall
+        
         /// <summary>
-        /// Create Hall
+        /// Create Reservation
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost(Name ="create-hall")]
-        public IActionResult Post([FromBody] HallModel model)
+        [HttpPost(Name ="create-reservation")]
+        public IActionResult Post([FromBody] ReservationModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    model.Id = _hallService.Add(model);
+                    model.Id = _reservationService.Add(model);
 
                     if (!model.Id.Equals(Guid.Empty))
                         return Created(string.Empty, model);
@@ -109,19 +109,20 @@ namespace ConfHall.Controllers
             }
         }
 
+        
         /// <summary>
-        /// Update Hall.
+        /// Update Reservation.
         /// </summary>
-        /// <param name="model">Hall model</param>
+        /// <param name="model">Reservation model</param>
         /// <returns>IActionResult</returns>
-        [HttpPut("{id}",Name = "update-hall")]
-        public IActionResult Put([FromBody] HallModel hallModel)
+        [HttpPut("{id}",Name = "update-reservation")]
+        public IActionResult Put([FromBody] ReservationModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _hallService.Update(hallModel);
+                    _reservationService.Update(model);
                     return Ok();
                 }
                 else
@@ -139,17 +140,17 @@ namespace ConfHall.Controllers
         
 
         /// <summary>
-        /// Delete a Hall by Id
+        /// Delete a Reservation by Id
         /// </summary>
         /// <param name="id"></param>
-        [HttpDelete("{id}",Name ="delete-hall")]
+        [HttpDelete("{id}",Name ="delete-reservation")]
         public IActionResult Delete(Guid id)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _hallService.Delete(id);
+                    _reservationService.Delete(id);
                     return Ok();
                 }
                 else

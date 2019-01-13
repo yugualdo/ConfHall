@@ -24,18 +24,18 @@ namespace ConfHall.Controllers
 
             // GET: api/Hall
             /// <summary>
-            /// Get all vehicle records.
+            /// Get all Customer records.
             /// </summary>
             /// <returns>IActionResult</returns>
-            [HttpGet(Name = "Hall")]
+            [HttpGet(Name = "Customer")]
             public IActionResult Get()
             {
                 try
                 {
-                    var VehicleList = _customerService.Get();
-                    if (VehicleList != null)
+                    var CustomerList = _customerService.Get();
+                    if (CustomerList != null)
                     {
-                        return Ok(VehicleList);
+                        return Ok(CustomerList);
                     }
                     else
                     {
@@ -78,7 +78,7 @@ namespace ConfHall.Controllers
 
             // POST: api/Hall
             /// <summary>
-            /// Create Hall
+            /// Create Customer
             /// </summary>
             /// <param name="model"></param>
             /// <returns></returns>
@@ -114,7 +114,7 @@ namespace ConfHall.Controllers
             /// </summary>
             /// <param name="model">Customer model</param>
             /// <returns>IActionResult</returns>
-            [HttpPut("{id}", Name = "update-hall")]
+            [HttpPut("{id}", Name = "update-customer")]
             public IActionResult Put([FromBody] CustomerModel model)
             {
                 try
