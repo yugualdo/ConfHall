@@ -33,8 +33,8 @@
 
         public HallModel Get(Guid id)
         {
-            var Vehicle = _hallRepository.Get(id);
-            return Mapper.Map<HallModel>(Vehicle);
+            var Hall = _hallRepository.Get(id);
+            return Mapper.Map<HallModel>(Hall);
         }
 
         public Guid Add(HallModel model)
@@ -45,7 +45,7 @@
             if (errors != null)
                 throw new ValidationException(errors);
 
-            this._hallRepository.Insert(hall);
+            _hallRepository.Insert(hall);
             return hall.Id;
         }
 

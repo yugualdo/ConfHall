@@ -81,6 +81,7 @@
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IHallService, HallService>();
+            services.AddTransient<ICustomerService, CustomerService>();
 
             #endregion
             #region Repositories

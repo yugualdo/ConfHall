@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ConfHall.Domain.Entities
 {
-    public class HallFeature
+    public class HallFeature : BaseEntity<Guid>
     {
         public Guid HallId { get; set; }
         public Guid FeatureId { get; set; }

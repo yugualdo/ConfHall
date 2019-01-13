@@ -6,7 +6,7 @@
 
     public class Hall : BaseEntity<Guid>
     {
-        private ICollection<Feature> features = new HashSet<Feature>();
+        private ICollection<HallFeature> _hallFeatures = new HashSet<HallFeature>();
 
         public Hall()
         {
@@ -16,27 +16,29 @@
         public virtual string Description { get; set; }
         public virtual HallType HallType { get; set; }
 
-        public virtual IEnumerable<Feature> Features
+        public virtual IEnumerable<HallFeature> HallFeatures
         {
             get
             {
-                return this.features;
+                return _hallFeatures;
             }
         }
         public virtual void AddFeature(Feature feature)
         {
-            if (!this.features.Contains(feature))
+            HallFeature hfeature = new HallFeature();
+            hfeature.Feature = feature;
+            hfeature.FeatureId = feature.Id;
+            hfeature.Hall = this;
+            hfeature.HallId = this.Id;
+            if (!_hallFeatures.Contains(hfeature))
             {
-                this.features.Add(feature);
+                _hallFeatures.Add(hfeature);
             }
         }
 
-        public virtual void RemoveFeature(Feature feature)
+        public virtual void RemoveFeature(Feature hallFeature)
         {
-            if (this.features.Contains(feature))
-            {
-                this.features.Remove(feature);
-            }
+            
         }
     }
 }
