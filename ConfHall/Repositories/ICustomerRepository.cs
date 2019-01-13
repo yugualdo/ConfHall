@@ -4,7 +4,7 @@
     using ConfHall.Domain.Repositories;
     using System;
 
-    interface ICustomerRepository : IRepository<Customer, Guid>
+    public interface ICustomerRepository : IRepository<Customer, Guid>
     {
     }
 }
