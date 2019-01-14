@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConfHall.Controllers
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReservationController : ControllerBase
@@ -16,19 +20,21 @@ namespace ConfHall.Controllers
 
         private IReservationService _reservationService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reservationService"></param>
         public ReservationController(IReservationService reservationService)
         {
             _reservationService = reservationService;
 
         }
-
-
-        // GET: api/Hall
+                
         /// <summary>
-        /// Get all vehicle records.
+        /// Get all Reservation records.
         /// </summary>
         /// <returns>IActionResult</returns>
-        [HttpGet(Name = "Hall")]
+        [HttpGet(Name = "Reservation")]
         public IActionResult Get()
         {
             try
@@ -40,7 +46,7 @@ namespace ConfHall.Controllers
                 }
                 else
                 {
-                    return BadRequest("There are no Halls.");
+                    return BadRequest("There are no Reservations.");
                 }
             }
             catch (Exception ex)
@@ -55,7 +61,7 @@ namespace ConfHall.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
             try
@@ -137,8 +143,6 @@ namespace ConfHall.Controllers
             }
         }
 
-        
-
         /// <summary>
         /// Delete a Reservation by Id
         /// </summary>
@@ -164,5 +168,112 @@ namespace ConfHall.Controllers
                 return BadRequest(ModelState);
             }
         }
+
+        /// <summary>
+        /// Get last 10 Reservation records from given Customer Id
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        [HttpGet("top",Name = "top-ten")]
+        public IActionResult Top(Guid customerId)
+        {
+            try
+            {
+                var ReservationList = _reservationService.Top(customerId);
+                if (ReservationList != null)
+                {
+                    return Ok(ReservationList);
+                }
+                else
+                {
+                    return BadRequest("There are no Reservations for this Customer.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        /// <summary>
+        /// Get all unconfirmed reservations
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("unconfirmed", Name = "unconfirmed")]
+        public IActionResult GetUnconfirmed()
+        {
+            try
+            {
+                var ReservationList = _reservationService.GetUnconfirmed();
+                if (ReservationList != null)
+                {
+                    return Ok(ReservationList);
+                }
+                else
+                {
+                    return BadRequest("There are no Unconfirmed Reservations.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        /// <summary>
+        /// Get all pending payment reservations
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("pendingpayment", Name = "pendingpayment")]
+        public IActionResult GetPendingPayment()
+        {
+            try
+            {
+                var ReservationList = _reservationService.GetPendingPayment();
+                if (ReservationList != null)
+                {
+                    return Ok(ReservationList);
+                }
+                else
+                {
+                    return BadRequest("There are no pending payment Reservations.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        /// <summary>
+        /// Confirm a reservation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("confirm/{id}")]
+        public IActionResult Confirm(Guid id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _reservationService.Confirm(id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
     }
 }

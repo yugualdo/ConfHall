@@ -55,7 +55,7 @@ namespace ConfHall.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
             try

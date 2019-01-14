@@ -13,13 +13,13 @@
     [ApiController]
     public class AccountController : Controller
     {
-        private IAccountService accountsService;
-        private IUserService userService;
+        private IAccountService _accountsService;
+        private IUserService _userService;
 
         public AccountController(IAccountService accountsService, IUserService userService)
         {
-            this.accountsService = accountsService;
-            this.userService = userService;
+            _accountsService = accountsService;
+            _userService = userService;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@
                 if (ModelState.IsValid)
                 {
                     string remoteIpAddreess = this.Request.HttpContext.Connection.RemoteIpAddress.ToString();
-                    var response = this.accountsService.PasswordSignInAsync(model, remoteIpAddreess);
+                    var response = _accountsService.PasswordSignInAsync(model, remoteIpAddreess);
                     if (response.Result != null)
                     {
                         return Ok(response.Result);
@@ -70,7 +70,7 @@
             {
                 if (ModelState.IsValid)
                 {
-                    userModel.Id = this.userService.Add(userModel);
+                    userModel.Id = _userService.Add(userModel);
 
                     if (!userModel.Id.Equals(Guid.Empty))
                         return Created(string.Empty, userModel);
@@ -101,7 +101,7 @@
             {
                 if (ModelState.IsValid)
                 {
-                    this.userService.Update(userModel);
+                    _userService.Update(userModel);
                     return Ok();
                 }
                 else
@@ -128,7 +128,7 @@
             {
                 if (ModelState.IsValid)
                 {
-                    var user = this.userService.Get(id);
+                    var user = _userService.Get(id);
 
                     if (user != null)
                         return Ok(user);
@@ -157,7 +157,7 @@
         {
             try
             {
-                this.accountsService.Logout();
+                _accountsService.Logout();
             }
             catch (Exception) { }
 

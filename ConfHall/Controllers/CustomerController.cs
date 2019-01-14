@@ -13,155 +13,155 @@ namespace ConfHall.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-            private ICustomerService _customerService;
+        private ICustomerService _customerService;
 
-            public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+
+        }
+
+
+        // GET: api/Hall
+        /// <summary>
+        /// Get all Customer records.
+        /// </summary>
+        /// <returns>IActionResult</returns>
+        
+        [HttpGet(Name = "Customer")]
+        public IActionResult Get()
+        {
+            try
             {
-                _customerService = customerService;
-
-            }
-
-
-            // GET: api/Hall
-            /// <summary>
-            /// Get all Customer records.
-            /// </summary>
-            /// <returns>IActionResult</returns>
-            [HttpGet(Name = "Customer")]
-            public IActionResult Get()
-            {
-                try
+                var CustomerList = _customerService.Get();
+                if (CustomerList != null)
                 {
-                    var CustomerList = _customerService.Get();
-                    if (CustomerList != null)
-                    {
-                        return Ok(CustomerList);
-                    }
-                    else
-                    {
-                        return BadRequest("There are no Halls.");
-                    }
+                    return Ok(CustomerList);
                 }
-                catch (Exception ex)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, ex.Message);
+                    return BadRequest("There are no Halls.");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        /// <summary>
+        /// Return Customer by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    CustomerModel HallModel = _customerService.Get(id);
+                    return Ok(HallModel);
+                }
+                else
+                {
                     return BadRequest(ModelState);
                 }
             }
-
-            /// <summary>
-            /// Return Customer by Id
-            /// </summary>
-            /// <param name="id"></param>
-            /// <returns></returns>
-            [HttpGet("{id}", Name = "Get")]
-            public IActionResult Get(Guid id)
+            catch (Exception ex)
             {
-                try
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+        // POST: api/Hall
+        /// <summary>
+        /// Create Customer
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost(Name = "create-customer")]
+        public IActionResult Post([FromBody] CustomerModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    if (ModelState.IsValid)
-                    {
-                        CustomerModel HallModel = _customerService.Get(id);
-                        return Ok(HallModel);
-                    }
+                    model.Id = _customerService.Add(model);
+
+                    if (!model.Id.Equals(Guid.Empty))
+                        return Created(string.Empty, model);
                     else
-                    {
-                        return BadRequest(ModelState);
-                    }
+                        return NoContent();
                 }
-                catch (Exception ex)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, ex.Message);
                     return BadRequest(ModelState);
                 }
             }
-
-            // POST: api/Hall
-            /// <summary>
-            /// Create Customer
-            /// </summary>
-            /// <param name="model"></param>
-            /// <returns></returns>
-            [HttpPost(Name = "create-customer")]
-            public IActionResult Post([FromBody] CustomerModel model)
+            catch (Exception ex)
             {
-                try
-                {
-                    if (ModelState.IsValid)
-                    {
-                        model.Id = _customerService.Add(model);
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
 
-                        if (!model.Id.Equals(Guid.Empty))
-                            return Created(string.Empty, model);
-                        else
-                            return NoContent();
-                    }
-                    else
-                    {
-                        return BadRequest(ModelState);
-                    }
-                }
-                catch (Exception ex)
+
+        /// <summary>
+        /// Update Customer.
+        /// </summary>
+        /// <param name="model">Customer model</param>
+        /// <returns>IActionResult</returns>
+        [HttpPut("{id}", Name = "update-customer")]
+        public IActionResult Put([FromBody] CustomerModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError(string.Empty, ex.Message);
+                    _customerService.Update(model);
+                    return Ok();
+                }
+                else
+                {
                     return BadRequest(ModelState);
                 }
             }
-
-            
-            /// <summary>
-            /// Update Customer.
-            /// </summary>
-            /// <param name="model">Customer model</param>
-            /// <returns>IActionResult</returns>
-            [HttpPut("{id}", Name = "update-customer")]
-            public IActionResult Put([FromBody] CustomerModel model)
+            catch (Exception ex)
             {
-                try
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Delete a Customer by Id
+        /// </summary>
+        /// <param name="id"></param>
+        [HttpDelete("{id}", Name = "delete-customer")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    if (ModelState.IsValid)
-                    {
-                        _customerService.Update(model);
-                        return Ok();
-                    }
-                    else
-                    {
-                        return BadRequest(ModelState);
-                    }
+                    _customerService.Delete(id);
+                    return Ok();
                 }
-                catch (Exception ex)
+                else
                 {
-                    ModelState.AddModelError(string.Empty, ex.Message);
                     return BadRequest(ModelState);
                 }
             }
-
-
-
-            /// <summary>
-            /// Delete a Customer by Id
-            /// </summary>
-            /// <param name="id"></param>
-            [HttpDelete("{id}", Name = "delete-customer")]
-            public IActionResult Delete(Guid id)
+            catch (Exception ex)
             {
-                try
-                {
-                    if (ModelState.IsValid)
-                    {
-                        _customerService.Delete(id);
-                        return Ok();
-                    }
-                    else
-                    {
-                        return BadRequest(ModelState);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError(string.Empty, ex.Message);
-                    return BadRequest(ModelState);
-                }
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
             }
         }
     }
