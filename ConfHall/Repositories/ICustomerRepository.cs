@@ -1,4 +1,4 @@
-﻿namespace ConfHall.Repositories
+﻿namespace ConfHall.Domain.Repositories
 {
     using ConfHall.Domain.Entities;
     using ConfHall.Domain.Repositories;

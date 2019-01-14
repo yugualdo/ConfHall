@@ -9,16 +9,20 @@
     using ConfHall.Services;
     using System.Collections.Generic;
     using System.Linq;
-    using ConfHall.Repositories;
 
     public class CustomerService : ICustomerService
     {
+        private IReservationRepository _reservationRepository;
+        private IHallRepository _hallRepository;
         private ICustomerRepository _customerRepository;
 
 
-        public CustomerService(ICustomerRepository customerRepository)
+
+        public CustomerService(ICustomerRepository customerRepository, IReservationRepository reservationRepository, IHallRepository hallRepository)
         {
             _customerRepository = customerRepository;
+            _reservationRepository = reservationRepository;
+            _hallRepository = hallRepository;
         }
 
 
@@ -63,7 +67,15 @@
 
         public void Delete(Guid id)
         {
-            _customerRepository.Delete(id);
+            
+
+            if (!(_reservationRepository.GetAll().Where(r => r.IsConfirmed == false && r.Customer.Id == id).Any()))
+            {
+                _customerRepository.Delete(id);
+            }
+            else {
+                throw new ValidationException("Can't delete a customer with unconfirmed reservations.");
+            }
         }
 
         private string Validate(Customer customer)

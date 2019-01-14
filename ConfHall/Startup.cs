@@ -21,6 +21,7 @@
     using Microsoft.IdentityModel.Tokens;
     using Swashbuckle.AspNetCore.Swagger;
     using ConfHall.Services;
+    using System.IO;
 
     public class Startup
     {
@@ -82,11 +83,14 @@
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IHallService, HallService>();
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IReservationService, ReservationService>();
 
             #endregion
             #region Repositories
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IHallRepository, HallRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
             #endregion
 
             ConfigureAutoMapper.Now();
@@ -108,11 +112,16 @@
                     In = "header",
                     Type = "apiKey"
                 });
-            });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+                options.DescribeAllEnumsAsStrings();
+            });           
 
             services.AddDbContext<ConfHallDBContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:SQLServer"],
+                options.UseLazyLoadingProxies().UseSqlServer(Configuration["ConnectionStrings:SQLServer"],
                                         sqlServerOptionsAction: sqlOptions =>
                                         {
                                             sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);

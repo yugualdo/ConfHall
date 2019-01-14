@@ -8,23 +8,34 @@ using System.Threading.Tasks;
 
 namespace ConfHall.Domain.Repositories
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ReservationRepository : IReservationRepository
     {
         private readonly ConfHallDBContext _context;
         private DbSet<Reservation> _entities;
         private string _errorMessage = string.Empty;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public ReservationRepository(ConfHallDBContext context)
         {
             _context = context;
             _entities = context.Set<Reservation>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Reservation> GetAll()
         {
             try
             {
-                return _entities.AsQueryable<Reservation>().AsNoTracking();
+                return _entities.AsQueryable<Reservation>().AsNoTracking().Include("Hall").Include("Customer");
             }
             catch (Exception)
             {
@@ -32,6 +43,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Reservation Get(Guid id)
         {
             try
@@ -44,13 +60,17 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Insert(Reservation entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-
             try
             {
                 _entities.Add(entity);
@@ -64,6 +84,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Guid Delete(Guid Id)
         {
             if (Id == Guid.Empty)
@@ -84,6 +109,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Update(Reservation entity)
         {
             if (entity == null)

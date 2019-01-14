@@ -2,7 +2,7 @@
 {
     using System;
 
-    class AuditableEntity<Tkey> : BaseEntity<Tkey>
+    public class AuditableEntity<Tkey> : BaseEntity<Tkey>
     {
         #region Constructor
 

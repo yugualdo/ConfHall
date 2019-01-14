@@ -12,6 +12,7 @@ namespace ConfHall.Domain.Repositories
     {
         private readonly ConfHallDBContext _context;
         private DbSet<Hall> _entities;
+        private DbSet<HallFeature> _features;
         private string _errorMessage = string.Empty;
 
         public HallRepository(ConfHallDBContext context)
@@ -100,6 +101,17 @@ namespace ConfHall.Domain.Repositories
             {
                 return Guid.Empty;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IQueryable<HallFeature> GetFeatures(Guid id)
+        {
+            return _features.AsQueryable<HallFeature>().Where(f => f.Hall.Id == id);
+
         }
     }
 }

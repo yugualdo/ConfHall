@@ -5,11 +5,19 @@ using System.Threading.Tasks;
 
 namespace ConfHall.Domain.Entities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HallFeature : BaseEntity<Guid>
     {
-        public Guid HallId { get; set; }
-        public Guid FeatureId { get; set; }
-        public Hall Hall { get; set; }
-        public Feature Feature { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Hall Hall { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Feature Feature { get; set; }
     }
 }

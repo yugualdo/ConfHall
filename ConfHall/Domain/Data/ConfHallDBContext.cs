@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ConfHall.Domain.Entities;
-namespace ConfHall.Domain.Data
+﻿namespace ConfHall.Domain.Data
 {
     using ConfHall.Domain.Entities;
     using Microsoft.AspNetCore.Identity;
@@ -8,6 +6,9 @@ namespace ConfHall.Domain.Data
     using Microsoft.EntityFrameworkCore;
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class ConfHallDBContext : IdentityDbContext
          <
          User,
@@ -22,13 +23,21 @@ namespace ConfHall.Domain.Data
     {
         private readonly IPasswordHasher<User> hashingService;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="hashingService"></param>
         public ConfHallDBContext(DbContextOptions<ConfHallDBContext> options, IPasswordHasher<User> hashingService)
            : base(options)
         {
             this.hashingService = hashingService;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,16 +52,28 @@ namespace ConfHall.Domain.Data
                 entity.Property(e => e.FirstName).IsRequired();
                 entity.Property(e => e.LastName).IsRequired();
             });
-
-            modelBuilder.Entity<HallFeature>().HasOne(hf => hf.Hall).WithMany(h => h.HallFeatures).HasForeignKey(hf=>hf.HallId);
-            modelBuilder.Entity<HallFeature>().HasOne(hf => hf.Feature).WithMany(h => h.HallFeatures).HasForeignKey(hf=>hf.FeatureId);
             
             modelBuilder.Seed(hashingService);
         }
-
-        public DbSet<ConfHall.Domain.Entities.Customer> Customer { get; set; }
-        public DbSet<ConfHall.Domain.Entities.Hall> Hall { get; set; }
-        public DbSet<ConfHall.Domain.Entities.Reservation> Reservation { get; set; }
-        public DbSet<ConfHall.Domain.Entities.HallFeature> HallFeature { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Customer> Customer { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Hall> Hall { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<Reservation> Reservation { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<HallFeature> HallFeature { get; set; }
     }
 }

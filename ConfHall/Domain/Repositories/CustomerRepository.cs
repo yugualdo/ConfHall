@@ -1,6 +1,5 @@
 ﻿using ConfHall.Domain.Data;
 using ConfHall.Domain.Entities;
-using ConfHall.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
