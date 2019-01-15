@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ConfHall.Models;
 using ConfHall.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +15,7 @@ namespace ConfHall.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class HallController : ControllerBase
     {
 
