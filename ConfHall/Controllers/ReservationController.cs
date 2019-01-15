@@ -276,6 +276,32 @@ namespace ConfHall.Controllers
                 return BadRequest(ModelState);
             }
         }
+        /// <summary>
+        /// Confirm a reservation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("pay/{id}")]
+        public IActionResult Pay(Guid id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _reservationService.Pay(id);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return BadRequest(ModelState);
+            }
+        }
 
     }
 }
