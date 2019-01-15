@@ -48,13 +48,30 @@
                 ConcurrencyStamp = Guid.NewGuid().ToString("D")
             };
             modelBuilder.Entity<Role>().HasData(role);
-
-            Feature feature = new Feature
-            {
-                Id = Guid.NewGuid(),
-                Name = "Screen"
-            };
-            modelBuilder.Entity<Feature>().HasData(feature);
+                        
+            modelBuilder.Entity<Feature>().HasData(
+                new Feature
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Screen"
+                }, new Feature
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Sound"
+                }, new Feature
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Air Conditioner"
+                }, new Feature
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Video Beam"
+                }, new Feature
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Seats"
+                }
+            );
 
 
 
@@ -66,16 +83,6 @@
                 HallType = HallType.EmptyRoom
             };
             modelBuilder.Entity<Hall>().HasData(hall);
-
-            //HallFeature hallFeature = new HallFeature
-            //{
-            //    Id = Guid.NewGuid(),
-            //    HallId = hall.Id,
-            //    FeatureId = feature.Id
-            //};
-            //modelBuilder.Entity<HallFeature>().HasData(hallFeature);
-
-
 
             Customer customer = new Customer
             {

@@ -3,6 +3,11 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
     public interface IAsyncRepository<TEntity, TKey>
     {
         #region Methods

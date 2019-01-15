@@ -1,26 +1,41 @@
-﻿using ConfHall.Domain.Data;
-using ConfHall.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ConfHall.Domain.Repositories
+﻿namespace ConfHall.Domain.Repositories
 {
+    using ConfHall.Domain.Data;
+    using ConfHall.Domain.Entities;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class HallRepository : IHallRepository
     {
         private readonly ConfHallDBContext _context;
         private DbSet<Hall> _entities;
-        private DbSet<HallFeature> _features;
+        private DbSet<HallFeature> _hallFeatures;
+        private DbSet<Feature> _features;
         private string _errorMessage = string.Empty;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public HallRepository(ConfHallDBContext context)
         {
             _context = context;
             _entities = context.Set<Hall>();
+            _hallFeatures = context.Set<HallFeature>();
+            _features = context.Set<Feature>();
+
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Hall> GetAll()
         {
             try
@@ -33,11 +48,33 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Hall Get(Guid id)
         {
             try
             {
-                return _entities.Where(p => p.Id.Equals(id)).FirstOrDefault();
+                Hall hall = _entities.Where(p => p.Id.Equals(id)).FirstOrDefault();
+                return hall;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Feature> GetFeatures(Guid id)
+        {
+            try
+            {
+                return _hallFeatures.Where(hf => hf.Hall.Id == id).Select(hf => hf.Feature).ToList();
             }
             catch (Exception)
             {
@@ -45,6 +82,13 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Insert(Hall entity)
         {
             if (entity == null)
@@ -65,6 +109,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Guid Delete(Guid Id)
         {
             if (Id == Guid.Empty)
@@ -85,6 +134,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Update(Hall entity)
         {
             if (entity == null)
@@ -103,15 +157,15 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public IQueryable<HallFeature> GetFeatures(Guid id)
-        {
-            return _features.AsQueryable<HallFeature>().Where(f => f.Hall.Id == id);
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="id"></param>
+        ///// <returns></returns>
+        //public IQueryable<Feature> GetFeatures(Guid id)
+        //{
+        //    return _features.AsQueryable<Feature>().Where(f => f.Hall.Id == id);
 
-        }
+        //}
     }
 }

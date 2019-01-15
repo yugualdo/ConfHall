@@ -9,7 +9,7 @@
     /// </summary>
     public class Hall : BaseEntity<Guid>
     {
-        private ICollection<HallFeature> _hallFeatures = new HashSet<HallFeature>();
+        private ICollection<Feature> _features = new HashSet<Feature>();
 
         /// <summary>
         /// 
@@ -36,31 +36,9 @@
         /// <summary>
         /// 
         /// </summary>
-        public virtual IEnumerable<HallFeature> HallFeatures
-        {
-            get
-            {
-                return _hallFeatures;
-            }
-        }
+        public virtual Decimal PricePerHour { get; set; }
 
 
-        //public virtual void AddFeature(Feature feature)
-        //{
-        //    HallFeature hallfeature = new HallFeature();
-        //    hallfeature.Feature = feature;
-        //    hallfeature.FeatureId = feature.Id;
-        //    hallfeature.Hall = this;
-        //    hallfeature.HallId = this.Id;
-        //    if (!_hallFeatures.Contains(hallfeature))
-        //    {
-        //        _hallFeatures.Add(hallfeature);
-        //    }
-        //}
-
-        //public virtual void RemoveFeature(Feature hallFeature)
-        //{
-
-        //}
+        
     }
 }

@@ -2,10 +2,17 @@
 {
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Tkey"></typeparam>
     public class AuditableEntity<Tkey> : BaseEntity<Tkey>
     {
         #region Constructor
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AuditableEntity() { }
 
         #endregion

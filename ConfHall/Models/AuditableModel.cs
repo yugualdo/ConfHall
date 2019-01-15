@@ -2,10 +2,17 @@
 {
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Tkey"></typeparam>
     public class AuditableModel<Tkey> : BaseModel<Tkey>
     {
         #region Constructor
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AuditableModel() { }
 
         #endregion

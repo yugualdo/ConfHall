@@ -52,25 +52,26 @@
                 entity.Property(e => e.FirstName).IsRequired();
                 entity.Property(e => e.LastName).IsRequired();
             });
-            
+
+            modelBuilder.Entity<HallFeature>().HasKey(hf => new { hf.HallId, hf.FeatureId });
             modelBuilder.Seed(hashingService);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         public DbSet<Customer> Customer { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
         public DbSet<Hall> Hall { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
         public DbSet<Reservation> Reservation { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>

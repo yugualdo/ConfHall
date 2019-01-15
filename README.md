@@ -25,7 +25,7 @@ Un cliente contiene los siguientes datos:
 
 El proyecto desarrollará la gestión de Salas, clientes y reservaciones, donde se requiere:
 - [x] Administración de un Salón o Sala (CRUD).  
-- [x] Administración de uncliente (CRUD).
+- [x] Administración de un cliente (CRUD).
 - [x] Administración de una Reservación (CRUD).
 
 (Se implementaron los endpoint básicos correspondientes)
@@ -68,14 +68,11 @@ Cada uno de los siguientes aspectos es opcional, pero entre más de estos aspect
 
 > Se implementaron repositorios para gestionar el acceso a la capa de dominio correspondiente.
 
-- [x]	Implementar algún mecanismo de autenticación
+- [x] Implementar algún mecanismo de autenticación y de autorización.
 
-> Se utilizó Identity para gestionar lo pertinente a los aspectos de autorización y autenticación.
-
-- [x]	Implementar algún mecanismo de autorización.
+> Se utilizó Identity para gestionar lo pertinente a los aspectos de autorización y autenticación mediante el uso de JWT.
 
 - [x] Utilizar inyección de dependencias mínimo en los límites del sistema.
 > El sistema está configurado para utilizar inyección de dependencias en los endpoint y en los servicios.
 
-- [x]	Tener un proyecto de pruebas unitarias que cubra por lo menos los escenarios delas reglas de negocio.
-> Se utilizó XUnit para la elaboración de las pruebas unitarias.
+- [ ]	Tener un proyecto de pruebas unitarias que cubra por lo menos los escenarios de las reglas de negocio.

@@ -2,6 +2,11 @@
 {
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
     public interface IRepository<TEntity, TKey>
     {
         #region Methods

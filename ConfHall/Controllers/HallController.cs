@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConfHall.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class HallController : ControllerBase
@@ -16,6 +19,10 @@ namespace ConfHall.Controllers
 
         private IHallService _hallService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hallService"></param>
         public HallController(IHallService hallService)
         {
             _hallService = hallService;
@@ -115,13 +122,13 @@ namespace ConfHall.Controllers
         /// <param name="model">Hall model</param>
         /// <returns>IActionResult</returns>
         [HttpPut("{id}",Name = "update-hall")]
-        public IActionResult Put([FromBody] HallModel hallModel)
+        public IActionResult Put([FromBody] HallModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _hallService.Update(hallModel);
+                    _hallService.Update(model);
                     return Ok();
                 }
                 else

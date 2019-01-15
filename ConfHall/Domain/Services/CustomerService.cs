@@ -10,6 +10,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class CustomerService : ICustomerService
     {
         private IReservationRepository _reservationRepository;
@@ -17,7 +20,12 @@
         private ICustomerRepository _customerRepository;
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customerRepository"></param>
+        /// <param name="reservationRepository"></param>
+        /// <param name="hallRepository"></param>
         public CustomerService(ICustomerRepository customerRepository, IReservationRepository reservationRepository, IHallRepository hallRepository)
         {
             _customerRepository = customerRepository;
@@ -36,12 +44,22 @@
             return Customer.Select(c => Mapper.Map<CustomerModel>(c)).ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public CustomerModel Get(Guid id)
         {
             var Customer = _customerRepository.Get(id);
             return Mapper.Map<CustomerModel>(Customer);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public Guid Add(CustomerModel model)
         {
             Customer customer = Mapper.Map<Customer>(model);
@@ -54,6 +72,10 @@
             return customer.Id;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
         public void Update(CustomerModel model)
         {
             Customer customer = Mapper.Map<Customer>(model);
@@ -65,6 +87,10 @@
             _customerRepository.Update(customer);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(Guid id)
         {
             

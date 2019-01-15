@@ -9,12 +9,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConfHall.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
         private ICustomerService _customerService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customerService"></param>
         public CustomerController(ICustomerService customerService)
         {
             _customerService = customerService;

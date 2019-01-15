@@ -4,6 +4,9 @@
     using ConfHall.Models;
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICustomerService : IService<CustomerModel, Guid>
     {
 

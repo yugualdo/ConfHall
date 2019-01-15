@@ -4,6 +4,9 @@
     using Microsoft.AspNetCore.Identity;
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class HashingService : IPasswordHasher<User>
     {
         #region Methods
@@ -13,11 +16,24 @@
             return BCrypt.BCryptHelper.CheckPassword(password, correctHash);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public string HashPassword(User user, string password)
         {
             return BCrypt.BCryptHelper.HashPassword(password, GetRandomSalt());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="hashedPassword"></param>
+        /// <param name="providedPassword"></param>
+        /// <returns></returns>
         public PasswordVerificationResult VerifyHashedPassword(User user, string hashedPassword, string providedPassword)
         {
             try

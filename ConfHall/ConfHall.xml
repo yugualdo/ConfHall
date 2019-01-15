@@ -9,6 +9,13 @@
             This class is used as an api for the search requests.
             </summary>
         </member>
+        <member name="M:ConfHall.Controllers.AccountController.#ctor(ConfHall.Domain.Services.IAccountService,ConfHall.Domain.Services.IUserService)">
+            <summary>
+            
+            </summary>
+            <param name="accountsService"></param>
+            <param name="userService"></param>
+        </member>
         <member name="M:ConfHall.Controllers.AccountController.Post(ConfHall.Model.AccountModel)">
             <summary>
             Login endpoint
@@ -34,7 +41,7 @@
             <summary>
             Get User endpoint
             </summary>
-            <param name="model"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:ConfHall.Controllers.AccountController.Logout">
@@ -42,6 +49,17 @@
             LogOut Endpoint
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:ConfHall.Controllers.CustomerController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Controllers.CustomerController.#ctor(ConfHall.Services.ICustomerService)">
+            <summary>
+            
+            </summary>
+            <param name="customerService"></param>
         </member>
         <member name="M:ConfHall.Controllers.CustomerController.Get">
             <summary>
@@ -75,6 +93,17 @@
             Delete a Customer by Id
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="T:ConfHall.Controllers.HallController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Controllers.HallController.#ctor(ConfHall.Services.IHallService)">
+            <summary>
+            
+            </summary>
+            <param name="hallService"></param>
         </member>
         <member name="M:ConfHall.Controllers.HallController.Get">
             <summary>
@@ -229,6 +258,17 @@
             <param name="modelBuilder"></param>
             <param name="hashingService"></param>
         </member>
+        <member name="T:ConfHall.Domain.Entities.AuditableEntity`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="Tkey"></typeparam>
+        </member>
+        <member name="M:ConfHall.Domain.Entities.AuditableEntity`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:ConfHall.Domain.Entities.AuditableEntity`1.CreatedAt">
             <summary>
             Gets or sets the date on which object was created.
@@ -258,6 +298,22 @@
             <value>
             The updated by.
             </value>
+        </member>
+        <member name="T:ConfHall.Domain.Entities.BaseEntity`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:ConfHall.Domain.Entities.BaseEntity`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Entities.BaseEntity`1.Id">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:ConfHall.Domain.Entities.Customer">
             <summary>
@@ -304,11 +360,6 @@
             
             </summary>
         </member>
-        <member name="P:ConfHall.Domain.Entities.Feature.HallFeatures">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:ConfHall.Domain.Entities.Hall">
             <summary>
             
@@ -334,7 +385,7 @@
             
             </summary>
         </member>
-        <member name="P:ConfHall.Domain.Entities.Hall.HallFeatures">
+        <member name="P:ConfHall.Domain.Entities.Hall.PricePerHour">
             <summary>
             
             </summary>
@@ -350,6 +401,16 @@
             </summary>
         </member>
         <member name="P:ConfHall.Domain.Entities.HallFeature.Feature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Entities.HallFeature.HallId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Entities.HallFeature.FeatureId">
             <summary>
             
             </summary>
@@ -444,11 +505,94 @@
             
             </summary>
         </member>
+        <member name="T:ConfHall.Domain.Repositories.CustomerRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.#ctor(ConfHall.Domain.Data.ConfHallDBContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.Update(ConfHall.Domain.Entities.Customer)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ConfHall.Domain.Repositories.HallRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.#ctor(ConfHall.Domain.Data.ConfHallDBContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.HallRepository.GetFeatures(System.Guid)">
             <summary>
             
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.Insert(ConfHall.Domain.Entities.Hall)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.HallRepository.Update(ConfHall.Domain.Entities.Hall)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
             <returns></returns>
         </member>
         <member name="T:ConfHall.Domain.Repositories.ReservationRepository">
@@ -496,6 +640,13 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="T:ConfHall.Domain.Repositories.IAsyncRepository`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.IAsyncRepository`2.Get(`1)">
             <summary>
             Gets Element by id.
@@ -533,6 +684,25 @@
             <param name="id">The id.</param>
             <returns>Int Value</returns>
         </member>
+        <member name="T:ConfHall.Domain.Repositories.IHallRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.IHallRepository.GetFeatures(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ConfHall.Domain.Repositories.IRepository`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.IRepository`2.Get(`1)">
             <summary>
             Gets Element by id.
@@ -567,6 +737,16 @@
             Class AccountService all login ModelBuinisess.
             </summary>
         </member>
+        <member name="M:ConfHall.Domain.Services.AccountService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,ConfHall.Domain.Services.IUserService,Microsoft.AspNetCore.Identity.SignInManager{ConfHall.Domain.Entities.User},Microsoft.AspNetCore.Identity.UserManager{ConfHall.Domain.Entities.User},Microsoft.Extensions.Options.IOptions{ConfHall.Models.JwtIssuerOptions})">
+            <summary>
+            
+            </summary>
+            <param name="_config"></param>
+            <param name="userService"></param>
+            <param name="signInManager"></param>
+            <param name="_userManager"></param>
+            <param name="jwtOptions"></param>
+        </member>
         <member name="M:ConfHall.Domain.Services.AccountService.LoginWithoutIdentity(ConfHall.Model.UserModel)">
             <summary>
             Validate login credencials
@@ -579,6 +759,7 @@
             Validate login credencials
             </summary>
             <param name="model"></param>
+            <param name="remoteIpAddress"></param>
             <returns>if the user exist return true. If not exist return false</returns>
         </member>
         <member name="M:ConfHall.Domain.Services.AccountService.SignInAsync(ConfHall.Model.AccountModel)">
@@ -587,6 +768,11 @@
             </summary>
             <param name="model"></param>
             <returns>if the user exist return true. If not exist return false</returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.AccountService.Logout">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:ConfHall.Domain.Services.AccountService.AddUserToRoleAsync(ConfHall.Domain.Entities.User,System.String)">
             <summary>
@@ -605,17 +791,122 @@
         <member name="M:ConfHall.Domain.Services.AccountService.ToUnixEpochDate(System.DateTime)">
             <returns>Date converted to seconds since Unix epoch (Jan 1, 1970, midnight UTC).</returns>
         </member>
+        <member name="T:ConfHall.Domain.Services.CustomerService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Services.CustomerService.#ctor(ConfHall.Domain.Repositories.ICustomerRepository,ConfHall.Domain.Repositories.IReservationRepository,ConfHall.Domain.Repositories.IHallRepository)">
+            <summary>
+            
+            </summary>
+            <param name="customerRepository"></param>
+            <param name="reservationRepository"></param>
+            <param name="hallRepository"></param>
+        </member>
         <member name="M:ConfHall.Domain.Services.CustomerService.Get">
             <summary>
             Gets list all of all customers.
             </summary>
             <returns>Hall IEnumerable</returns>
         </member>
+        <member name="M:ConfHall.Domain.Services.CustomerService.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.CustomerService.Add(ConfHall.Models.CustomerModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.CustomerService.Update(ConfHall.Models.CustomerModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.CustomerService.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:ConfHall.Domain.Services.HallService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.#ctor(ConfHall.Domain.Repositories.IHallRepository)">
+            <summary>
+            
+            </summary>
+            <param name="hallRepository"></param>
+        </member>
         <member name="M:ConfHall.Domain.Services.HallService.Get">
             <summary>
             Gets list all of all halls.
             </summary>
             <returns>Hall IEnumerable</returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.Add(ConfHall.Models.HallModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.Update(ConfHall.Models.HallModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HallService.Validate(ConfHall.Domain.Entities.Hall)">
+            <summary>
+            
+            </summary>
+            <param name="hall"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ConfHall.Domain.Services.HashingService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HashingService.HashPassword(ConfHall.Domain.Entities.User,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.HashingService.VerifyHashedPassword(ConfHall.Domain.Entities.User,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="hashedPassword"></param>
+            <param name="providedPassword"></param>
+            <returns></returns>
         </member>
         <member name="T:ConfHall.Domain.Services.ReservationService">
             <summary>
@@ -686,7 +977,15 @@
             UserService class.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ConfHall.Domain.Services.UserService.#ctor(ConfHall.Domain.Repositories.IUserRepository,Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.AspNetCore.Identity.IPasswordHasher{ConfHall.Domain.Entities.User})" -->
+        <member name="M:ConfHall.Domain.Services.UserService.#ctor(ConfHall.Domain.Repositories.IUserRepository,Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.AspNetCore.Identity.IPasswordHasher{ConfHall.Domain.Entities.User})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ConfHall.Domain.Services.UserService"/> class.
+            </summary>
+            <param name="UserRepository">The User Repository.</param>
+            <param name="hashingService"></param>
+            <param name="httpContextAccessor"></param>
+            
+        </member>
         <member name="M:ConfHall.Domain.Services.UserService.Add(ConfHall.Model.UserModel)">
             <summary>
             Sets a Campaign by UserModel.
@@ -715,6 +1014,24 @@
             <param name="UserModel">The UserModel.</param>
             <returns></returns>
         </member>
+        <member name="T:ConfHall.Domain.Services.IAccountService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IAccountService.PasswordSignInAsync(ConfHall.Model.AccountModel,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="remoteIpAddreess"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IAccountService.Logout">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:ConfHall.Domain.Services.IService`2.Get(`1)">
             <summary>
             Gets Element by id.
@@ -742,6 +1059,17 @@
             </summary>
             <param name="id">The id.</param>
             <returns>Tkey Value</returns>
+        </member>
+        <member name="T:ConfHall.Domain.Model.AuditableModel`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="Tkey"></typeparam>
+        </member>
+        <member name="M:ConfHall.Domain.Model.AuditableModel`1.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:ConfHall.Domain.Model.AuditableModel`1.CreatedAt">
             <summary>
@@ -772,6 +1100,167 @@
             <value>
             The updated by.
             </value>
+        </member>
+        <member name="T:ConfHall.Domain.Model.BaseModel`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:ConfHall.Domain.Model.BaseModel`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Model.BaseModel`1.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Domain.Model.FilterModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Model.FilterModel.PropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Model.FilterModel.Operation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Domain.Model.FilterModel.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Enums.HallType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ConfHall.Enums.HallType.Outdoors">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ConfHall.Enums.HallType.EmptyRoom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ConfHall.Enums.HallType.FurnishedRoom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Model.AccountModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Model.AccountModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.RememberMe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.AccountModel.Expiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Models.CustomerModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.CustomerModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.CustomerModel.IdNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.CustomerModel.Balance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.CustomerModel.PhoneNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Models.FeatureModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.FeatureModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Models.HallModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.HallModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.HallModel.Description">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.HallModel.HallType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.HallModel.PricePerHour">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Models.HallModel.Features">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:ConfHall.Models.JwtIssuerOptions.Expiration">
             <summary>
@@ -905,6 +1394,47 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:ConfHall.Services.ICustomerService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Services.IReservationService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Services.IReservationService.Top(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Services.IReservationService.GetUnconfirmed">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Services.IReservationService.GetPendingPayment">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Services.IReservationService.Confirm(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ConfHall.Services.IReservationService.Pay(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
         </member>
     </members>
 </doc>

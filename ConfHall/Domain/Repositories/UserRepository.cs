@@ -80,7 +80,7 @@
                 this.context.SaveChanges();
                 return entity.Id;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Guid.Empty;
             }

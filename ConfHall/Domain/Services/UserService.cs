@@ -27,9 +27,13 @@
 
         #region Constructors
 
+        /// <summary>
         /// Initializes a new instance of the <see cref="UserService"/> class.
         /// </summary>
         /// <param name="UserRepository">The User Repository.</param>
+        /// <param name="hashingService"></param>
+        /// <param name="httpContextAccessor"></param>
+        /// 
         public UserService(
 
             IUserRepository UserRepository,
@@ -92,7 +96,7 @@
             return Mapper.Map<UserModel>(User);
         }
 
-        
+
 
         /// <summary>
         /// Update a User by UserModel.

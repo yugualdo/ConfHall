@@ -28,6 +28,14 @@
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly IConfiguration _config;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_config"></param>
+        /// <param name="userService"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="_userManager"></param>
+        /// <param name="jwtOptions"></param>
         public AccountService(IConfiguration _config, IUserService userService, SignInManager<User> signInManager, UserManager<User> _userManager, IOptions<JwtIssuerOptions> jwtOptions) : base()
         {
             this.userService = userService;
@@ -62,8 +70,9 @@
         /// Validate login credencials
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="remoteIpAddress"></param>
         /// <returns>if the user exist return true. If not exist return false</returns>
-        public async Task<AccountModel> PasswordSignInAsync(AccountModel model, string remoteIpAddreess)
+        public async Task<AccountModel> PasswordSignInAsync(AccountModel model, string remoteIpAddress)
         {
             User user = await this._userManager.FindByNameAsync(model.UserName);
             if (user != null && !this.IsSignedIn(user))
@@ -137,6 +146,9 @@
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Logout()
         {
             UserModel CurrentUser = this.userService.GetCurrentUser();
@@ -224,7 +236,7 @@
             // Create the JWT security token and encode it.
             JwtSecurityToken jwt = new JwtSecurityToken(
                 issuer: this._jwtOptions.Issuer,
-                //audience: remoteIpAddreess,
+                //audience: remoteIpAddress,
                 audience: this._jwtOptions.Audience,
                 claims: claims,
                 notBefore: this._jwtOptions.NotBefore,

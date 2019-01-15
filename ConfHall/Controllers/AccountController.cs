@@ -16,6 +16,11 @@
         private IAccountService _accountsService;
         private IUserService _userService;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountsService"></param>
+        /// <param name="userService"></param>
         public AccountController(IAccountService accountsService, IUserService userService)
         {
             _accountsService = accountsService;
@@ -64,16 +69,16 @@
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("{UserModel}", Name ="create-user")]
-        public IActionResult Post([FromBody] UserModel userModel)
+        public IActionResult Post([FromBody] UserModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    userModel.Id = _userService.Add(userModel);
+                    model.Id = _userService.Add(model);
 
-                    if (!userModel.Id.Equals(Guid.Empty))
-                        return Created(string.Empty, userModel);
+                    if (!model.Id.Equals(Guid.Empty))
+                        return Created(string.Empty, model);
                     else
                         return NoContent();
                 }
@@ -95,13 +100,13 @@
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult Put([FromBody] UserModel userModel)
+        public IActionResult Put([FromBody] UserModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _userService.Update(userModel);
+                    _userService.Update(model);
                     return Ok();
                 }
                 else
@@ -119,7 +124,7 @@
         /// <summary>
         /// Get User endpoint
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{Guid}")]
         public IActionResult Get(Guid id)

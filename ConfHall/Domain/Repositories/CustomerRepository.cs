@@ -6,18 +6,29 @@ using System.Linq;
 
 namespace ConfHall.Domain.Repositories
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CustomerRepository : ICustomerRepository
     {
         private readonly ConfHallDBContext _context;
         private DbSet<Customer> _entities;
         private string _errorMessage = string.Empty;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public CustomerRepository(ConfHallDBContext context)
         {
             _context = context;
             _entities = context.Set<Customer>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<Customer> GetAll()
         {
             try
@@ -30,6 +41,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Customer Get(Guid id)
         {
             try
@@ -62,6 +78,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Guid Delete(Guid Id)
         {
             if (Id == Guid.Empty)
@@ -82,6 +103,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Update(Customer entity)
         {
             if (entity == null)
