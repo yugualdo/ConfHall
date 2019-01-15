@@ -1,37 +1,81 @@
-## Welcome to GitHub Pages
+# Sala de Conferencias
+Una empresa de eventos desea centralizar la gestión de las reservas de salones que ofrece a sus clientes para el dictado de conferencias y la realización de eventos. El departamento de tecnología ha decidido realizar la implementación de una aplicación web, para ello se requiere desarrollar un Web Api Restful en C#.
 
-You can use the [editor on GitHub](https://github.com/yugualdo/ConfHall/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Una Sala de conferencias se compone de la siguiente información:
+-	Nombre del salón
+-	Descripción del salón
+-	Tipo espacio (Aire libre, Sala vacía, Sala amoblada). 
+-	Cualidades de las que disponle el salón (Pantallas, Equipo de sonido, Aire acondicionado, Video Beam, Butacas de lujo).
+-	Precio por hora del Alquiler.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Una Reservación contiene los siguientes datos:
+-	Salón a reservar
+-	Cliente que reserva el salón
+-	Hora de inicio de la actividad
+-	Hora de culminación
+-	Monto total de la reserva
+-	Si la misma ya fue pagada por el cliente
+-	Confirmada
 
-### Markdown
+Un cliente contiene los siguientes datos:
+-	Nombre del cliente
+-	Número de identificación (Entre 9 y 10 dígitos)
+-	Saldo actual que debe por reservaciones
+-	Número telefónico (11 dígitos)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+El proyecto desarrollará la gestión de Salas, clientes y reservaciones, donde se requiere:
+- [x] Administración de un Salón o Sala (CRUD).  
+- [x] Administración de uncliente (CRUD).
+- [x] Administración de una Reservación (CRUD).
 
-```markdown
-Syntax highlighted code block
+(Se implementaron los endpoint básicos correspondientes)
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+Tomando en cuenta que se deben respetar las siguientes reglas de negocio:
 
-1. Numbered
-2. List
+- [x]	No se puede eliminar clientes que tengan reservaciones sin confirmar. 
+- [x]	Al momento de eliminar un cliente se debe eliminar el historial de reservaciones.
+- [x]	Un cliente no puede reservar un salón en un periodo determinado de tiempo si el mismo ya se encuentra reservado para ese periodo.
+- [x]	Una reserva no puede empezar luego de las 10 PM ni antes de las 7 AM.
+- [x]	No se puede eliminar directamente un reservación que ya fue confirmada o pagada.
 
-**Bold** and _Italic_ and `Code` text
+Adicionalmente se requiere lo siguiente:
 
-[Link](url) and ![Image](src)
-```
+- [x]	Poder obtener un listado de las ultimas 10 reservas de un cliente.
+- [x]	Obtener un reporte de las reservas pendientes por confirmar.
+- [x]	Obtener un reporte de las reservas pendientes por pagar.
+- [x]	Confirmar una reservación
+- [x]	Pagar una reservación
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Aspectos Técnicos
 
-### Jekyll Themes
+Cada uno de los siguientes aspectos es Obligatorio:
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yugualdo/ConfHall/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- [x]	Realizar los Servicios REST y el Backend con ASP.Net Web Api C#.
 
-### Support or Contact
+> Se implementaron los servicios sobre un proyecto ASP.Net Core 2.1
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- [x]	El componente de acceso a los datos se debe implementar con ORM, utilizar Entity Framework CodeFirst, se debe tener definido los Migrations y Seeding de los datos.
+
+> Se implementaron las clases correspondientes utilizando la arquitectura de N-Capas.
+
+Cada uno de los siguientes aspectos es opcional, pero entre más de estos aspectossean implementados, mejor será la evaluación final de la prueba:
+- [x]	Uso de convención de nombres en Camel Case.
+
+> Se utilizó la convención de nombres adecuada en el desarrollo de todo el código.
+
+- [x]	En el componente de acceso a datos debe implementar Patrón Repositorio.
+
+> Se implementaron repositorios para gestionar el acceso a la capa de dominio correspondiente.
+
+- [x]	Implementar algún mecanismo de autenticación
+
+> Se utilizó Identity para gestionar lo pertinente a los aspectos de autorización y autenticación.
+
+- [x]	Implementar algún mecanismo de autorización.
+
+- [x] Utilizar inyección de dependencias mínimo en los límites del sistema.
+> El sistema está configurado para utilizar inyección de dependencias en los endpoint y en los servicios.
+
+- [x]	Tener un proyecto de pruebas unitarias que cubra por lo menos los escenarios delas reglas de negocio.
+> Se utilizó XUnit para la elaboración de las pruebas unitarias.
