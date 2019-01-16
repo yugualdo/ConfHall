@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ConfHall.Models;
-using ConfHall.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ConfHall.Controllers
+﻿namespace ConfHall.Controllers
 {
+    using System;
+    using ConfHall.Models;
+    using ConfHall.Services;
+    using Microsoft.AspNetCore.Mvc;
+
 
     /// <summary>
     /// 
@@ -31,7 +26,7 @@ namespace ConfHall.Controllers
             _reservationService = reservationService;
 
         }
-                
+
         /// <summary>
         /// Get all Reservation records.
         /// </summary>
@@ -85,13 +80,13 @@ namespace ConfHall.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// Create Reservation
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost(Name ="create-reservation")]
+        [HttpPost(Name = "create-reservation")]
         public IActionResult Post([FromBody] ReservationModel model)
         {
             try
@@ -117,13 +112,13 @@ namespace ConfHall.Controllers
             }
         }
 
-        
+
         /// <summary>
         /// Update Reservation.
         /// </summary>
         /// <param name="model">Reservation model</param>
         /// <returns>IActionResult</returns>
-        [HttpPut("{id}",Name = "update-reservation")]
+        [HttpPut("{id}", Name = "update-reservation")]
         public IActionResult Put([FromBody] ReservationModel model)
         {
             try
@@ -149,7 +144,7 @@ namespace ConfHall.Controllers
         /// Delete a Reservation by Id
         /// </summary>
         /// <param name="id"></param>
-        [HttpDelete("{id}",Name ="delete-reservation")]
+        [HttpDelete("{id}", Name = "delete-reservation")]
         public IActionResult Delete(Guid id)
         {
             try
@@ -176,7 +171,7 @@ namespace ConfHall.Controllers
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        [HttpGet("top",Name = "top-ten")]
+        [HttpGet("top", Name = "top-ten")]
         public IActionResult Top(Guid customerId)
         {
             try

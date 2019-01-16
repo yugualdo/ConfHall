@@ -11,6 +11,12 @@
     {
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="correctHash"></param>
+        /// <returns></returns>
         public static bool ValidatePassword(string password, string correctHash)
         {
             return BCrypt.BCryptHelper.CheckPassword(password, correctHash);

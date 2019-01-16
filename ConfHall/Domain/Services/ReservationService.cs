@@ -138,6 +138,10 @@
             return Reservation.Select(c => Mapper.Map<ReservationModel>(c)).ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Confirm(Guid id)
         {
             Reservation reservation = _reservationRepository.Get(id);
@@ -152,6 +156,10 @@
             _reservationRepository.Update(reservation);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Pay(Guid id)
         {
             Reservation reservation = _reservationRepository.Get(id);
@@ -166,6 +174,11 @@
             _reservationRepository.Update(reservation);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reservation"></param>
+        /// <returns></returns>
         private string Validate(Reservation reservation)
         {
             List<string> errors = new List<string>();

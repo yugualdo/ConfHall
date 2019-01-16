@@ -12,6 +12,5 @@
         /// 
         /// </summary>
         public Role() { }
-
     }
 }

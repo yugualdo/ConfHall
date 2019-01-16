@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ConfHall.Models;
-using ConfHall.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ConfHall.Controllers
+﻿namespace ConfHall.Controllers
 {
+    using System;
+    using ConfHall.Models;
+    using ConfHall.Services;
+    using Microsoft.AspNetCore.Mvc;
+
     /// <summary>
     /// 
     /// </summary>
@@ -18,7 +13,6 @@ namespace ConfHall.Controllers
     //[Authorize]
     public class HallController : ControllerBase
     {
-
         private IHallService _hallService;
 
         /// <summary>
@@ -92,7 +86,7 @@ namespace ConfHall.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost(Name ="create-hall")]
+        [HttpPost(Name = "create-hall")]
         public IActionResult Post([FromBody] HallModel model)
         {
             try
@@ -123,7 +117,7 @@ namespace ConfHall.Controllers
         /// </summary>
         /// <param name="model">Hall model</param>
         /// <returns>IActionResult</returns>
-        [HttpPut("{id}",Name = "update-hall")]
+        [HttpPut("{id}", Name = "update-hall")]
         public IActionResult Put([FromBody] HallModel model)
         {
             try
@@ -145,13 +139,13 @@ namespace ConfHall.Controllers
             }
         }
 
-        
+
 
         /// <summary>
         /// Delete a Hall by Id
         /// </summary>
         /// <param name="id"></param>
-        [HttpDelete("{id}",Name ="delete-hall")]
+        [HttpDelete("{id}", Name = "delete-hall")]
         public IActionResult Delete(Guid id)
         {
             try

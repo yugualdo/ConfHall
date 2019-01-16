@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ConfHall.Models;
-using ConfHall.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ConfHall.Controllers
+﻿namespace ConfHall.Controllers
 {
+    using System;
+    using ConfHall.Models;
+    using ConfHall.Services;
+    using Microsoft.AspNetCore.Mvc;
+
     /// <summary>
     /// 
     /// </summary>
@@ -36,7 +31,7 @@ namespace ConfHall.Controllers
         /// Get all Customer records.
         /// </summary>
         /// <returns>IActionResult</returns>
-        
+
         [HttpGet(Name = "Customer")]
         public IActionResult Get()
         {

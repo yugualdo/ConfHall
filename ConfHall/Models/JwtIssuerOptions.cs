@@ -2,6 +2,10 @@
 {
     using Microsoft.IdentityModel.Tokens;
     using System;
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class JwtIssuerOptions
     {
         #region Fields
@@ -88,6 +92,9 @@
             get; set;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string SecretKey
         {
             get; set;

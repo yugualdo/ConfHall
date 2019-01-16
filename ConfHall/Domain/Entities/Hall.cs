@@ -29,7 +29,7 @@
         public virtual string Description { get; set; }
 
         /// <summary>
-        /// 
+        /// Possible values: Outdoors, EmptyRoom, FurnishedRoom
         /// </summary>
         public virtual HallType HallType { get; set; }
 

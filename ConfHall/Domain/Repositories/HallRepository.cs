@@ -82,8 +82,6 @@
             }
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -95,7 +93,6 @@
             {
                 throw new ArgumentNullException("entity");
             }
-
             try
             {
                 _entities.Add(entity);
@@ -156,16 +153,5 @@
                 return Guid.Empty;
             }
         }
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //public IQueryable<Feature> GetFeatures(Guid id)
-        //{
-        //    return _features.AsQueryable<Feature>().Where(f => f.Hall.Id == id);
-
-        //}
     }
 }

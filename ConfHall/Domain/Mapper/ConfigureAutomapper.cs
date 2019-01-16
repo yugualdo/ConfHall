@@ -36,7 +36,6 @@
 
             });
         }
-
         #endregion Methods
     }
 }

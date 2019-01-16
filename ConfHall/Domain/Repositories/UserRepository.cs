@@ -6,6 +6,9 @@
     using System;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         private readonly ConfHallDBContext context;
@@ -15,13 +18,22 @@
         string errorMessage = string.Empty;
         #region Constructors
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
         public UserRepository(ConfHallDBContext context)
         {
             this.context = context;
             this.entities = context.Set<User>();
         }
-
         #endregion Constructors
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Guid Delete(Guid Id)
         {
             if (Id == Guid.Empty)
@@ -43,6 +55,11 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public User Get(Guid id)
         {
             try
@@ -55,6 +72,10 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<User> GetAll()
         {
             try
@@ -67,6 +88,11 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Insert(User entity)
         {
             if (entity == null)
@@ -86,6 +112,11 @@
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Update(User entity)
         {
             if (entity == null)

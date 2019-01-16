@@ -11,7 +11,6 @@
         /// 
         /// </summary>
         public BaseEntity() { }
-
         #endregion
 
         #region Properties
@@ -19,7 +18,6 @@
         /// 
         /// </summary>
         public TKey Id { get; set; }
-
         #endregion
     }
 }

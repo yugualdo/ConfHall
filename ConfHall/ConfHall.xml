@@ -389,7 +389,7 @@
         </member>
         <member name="P:ConfHall.Domain.Entities.Hall.HallType">
             <summary>
-            
+            Possible values: Outdoors, EmptyRoom, FurnishedRoom
             </summary>
         </member>
         <member name="P:ConfHall.Domain.Entities.Hall.PricePerHour">
@@ -536,6 +536,13 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:ConfHall.Domain.Repositories.CustomerRepository.Insert(ConfHall.Domain.Entities.Customer)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.CustomerRepository.Delete(System.Guid)">
             <summary>
             
@@ -647,6 +654,51 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="T:ConfHall.Domain.Repositories.UserRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.#ctor(ConfHall.Domain.Data.ConfHallDBContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.Delete(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.Insert(ConfHall.Domain.Entities.User)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Repositories.UserRepository.Update(ConfHall.Domain.Entities.User)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
         <member name="T:ConfHall.Domain.Repositories.IAsyncRepository`2">
             <summary>
             
@@ -661,7 +713,12 @@
             <param name="id">The id.</param>
             <returns>TEntity Element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ConfHall.Domain.Repositories.IAsyncRepository`2.GetAll" -->
+        <member name="M:ConfHall.Domain.Repositories.IAsyncRepository`2.GetAll">
+            <summary>
+            Gets All elements TEntity.
+            </summary>
+            <returns>IEnumerable&lt;TEntity&gt;</returns>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.IAsyncRepository`2.GetAll(System.Int32,System.Int32)">
             <summary>
             Get all notifications.
@@ -691,6 +748,11 @@
             <param name="id">The id.</param>
             <returns>Int Value</returns>
         </member>
+        <member name="T:ConfHall.Domain.Repositories.ICustomerRepository">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:ConfHall.Domain.Repositories.IHallRepository">
             <summary>
             
@@ -717,7 +779,12 @@
             <param name="id">The id.</param>
             <returns>TEntity Element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ConfHall.Domain.Repositories.IRepository`2.GetAll" -->
+        <member name="M:ConfHall.Domain.Repositories.IRepository`2.GetAll">
+            <summary>
+            Gets All elements TEntity.
+            </summary>
+            <returns>IEnumerable&lt;TEntity&gt;</returns>
+        </member>
         <member name="M:ConfHall.Domain.Repositories.IRepository`2.Insert(`0)">
             <summary>
             Added TEntity Element.
@@ -738,6 +805,16 @@
             </summary>
             <param name="id">The id.</param>
             <returns>Int Value</returns>
+        </member>
+        <member name="T:ConfHall.Domain.Repositories.IReservationRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Domain.Repositories.IUserRepository">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:ConfHall.Domain.Services.AccountService">
             <summary>
@@ -898,6 +975,14 @@
             
             </summary>
         </member>
+        <member name="M:ConfHall.Domain.Services.HashingService.ValidatePassword(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="password"></param>
+            <param name="correctHash"></param>
+            <returns></returns>
+        </member>
         <member name="M:ConfHall.Domain.Services.HashingService.HashPassword(ConfHall.Domain.Entities.User,System.String)">
             <summary>
             
@@ -979,6 +1064,25 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ConfHall.Domain.Services.ReservationService.Confirm(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.ReservationService.Pay(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.ReservationService.Validate(ConfHall.Domain.Entities.Reservation)">
+            <summary>
+            
+            </summary>
+            <param name="reservation"></param>
+            <returns></returns>
+        </member>
         <member name="T:ConfHall.Domain.Services.UserService">
             <summary>
             UserService class.
@@ -1021,6 +1125,20 @@
             <param name="UserModel">The UserModel.</param>
             <returns></returns>
         </member>
+        <member name="M:ConfHall.Domain.Services.UserService.GetCurrentUser">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.UserService.VerifyPasswordHash(ConfHall.Domain.Entities.User,ConfHall.Model.UserModel)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="userModel"></param>
+            <returns></returns>
+        </member>
         <member name="T:ConfHall.Domain.Services.IAccountService">
             <summary>
             
@@ -1039,6 +1157,13 @@
             
             </summary>
         </member>
+        <member name="T:ConfHall.Domain.Services.IService`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
         <member name="M:ConfHall.Domain.Services.IService`2.Get(`1)">
             <summary>
             Gets Element by id.
@@ -1046,7 +1171,12 @@
             <param name="id">The id.</param>
             <returns>TModel Element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:ConfHall.Domain.Services.IService`2.Get" -->
+        <member name="M:ConfHall.Domain.Services.IService`2.Get">
+            <summary>
+            Gets All elements TModel.
+            </summary>
+            <returns>IEnumerable&lt;TModel&gt;</returns>
+        </member>
         <member name="M:ConfHall.Domain.Services.IService`2.Add(`0)">
             <summary>
             Added TModel Element.
@@ -1066,6 +1196,43 @@
             </summary>
             <param name="id">The id.</param>
             <returns>Tkey Value</returns>
+        </member>
+        <member name="T:ConfHall.Domain.Services.IUserService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IUserService.Add(ConfHall.Model.UserModel)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IUserService.Get">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IUserService.Get(System.Guid)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IUserService.Update(ConfHall.Model.UserModel)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:ConfHall.Domain.Services.IUserService.GetCurrentUser">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ConfHall.Domain.Model.AuditableModel`1">
             <summary>
@@ -1149,17 +1316,7 @@
             
             </summary>
         </member>
-        <member name="F:ConfHall.Enums.HallType.Outdoors">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:ConfHall.Enums.HallType.EmptyRoom">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:ConfHall.Enums.HallType.FurnishedRoom">
+        <member name="T:ConfHall.Enums.Operator">
             <summary>
             
             </summary>
@@ -1200,6 +1357,66 @@
             </summary>
         </member>
         <member name="P:ConfHall.Model.AccountModel.Expiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Model.RoleModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Model.RoleModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.RoleModel.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.RoleModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Model.UserModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Model.UserModel.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.FirstName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.LastName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.Email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ConfHall.Model.UserModel.PasswordHash">
             <summary>
             
             </summary>
@@ -1255,8 +1472,8 @@
             </summary>
         </member>
         <member name="P:ConfHall.Models.HallModel.HallType">
-            <summary>
-            
+            <summary>        
+            Possible values: Outdoors, EmptyRoom, FurnishedRoom
             </summary>
         </member>
         <member name="P:ConfHall.Models.HallModel.PricePerHour">
@@ -1265,6 +1482,11 @@
             </summary>
         </member>
         <member name="P:ConfHall.Models.HallModel.Features">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Models.JwtIssuerOptions">
             <summary>
             
             </summary>
@@ -1340,6 +1562,11 @@
               The "iss" value is a case-sensitive string containing a StringOrURI
               value.  Use of this claim is OPTIONAL.</remarks>
         </member>
+        <member name="P:ConfHall.Models.JwtIssuerOptions.SecretKey">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:ConfHall.Models.JwtIssuerOptions.SigningCredentials">
             <summary>
             The signing key to use when generating tokens.
@@ -1402,7 +1629,30 @@
             
             </summary>
         </member>
+        <member name="T:ConfHall.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:ConfHall.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
         <member name="T:ConfHall.Services.ICustomerService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ConfHall.Services.IHallService">
             <summary>
             
             </summary>
@@ -1442,6 +1692,35 @@
             
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="T:ConfHall.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:ConfHall.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ConfHall.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:ConfHall.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
         </member>
     </members>
 </doc>

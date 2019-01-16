@@ -2,10 +2,14 @@
 
 namespace ConfHall.Domain.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
     public interface IService<TModel, TKey>
     {
         #region Methods
-
         /// <summary>
         /// Gets Element by id.
         /// </summary>
@@ -16,7 +20,7 @@ namespace ConfHall.Domain.Services
         /// <summary>
         /// Gets All elements TModel.
         /// </summary>
-        /// <returns>IEnumerable<TModel></returns>
+        /// <returns>IEnumerable&lt;TModel&gt;</returns>
         IEnumerable<TModel> Get();
 
         /// <summary>
@@ -38,7 +42,6 @@ namespace ConfHall.Domain.Services
         /// <param name="id">The id.</param>
         /// <returns>Tkey Value</returns>
         void Delete(TKey id);
-
         #endregion
     }
 }

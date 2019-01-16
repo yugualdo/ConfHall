@@ -1,11 +1,11 @@
-﻿using ConfHall.Domain.Data;
-using ConfHall.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-
-namespace ConfHall.Domain.Repositories
+﻿namespace ConfHall.Domain.Repositories
 {
+    using ConfHall.Domain.Data;
+    using ConfHall.Domain.Entities;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// 
     /// </summary>
@@ -58,6 +58,11 @@ namespace ConfHall.Domain.Repositories
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public Guid Insert(Customer entity)
         {
             if (entity == null)

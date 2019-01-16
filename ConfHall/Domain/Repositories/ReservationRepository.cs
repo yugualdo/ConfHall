@@ -1,13 +1,11 @@
-﻿using ConfHall.Domain.Data;
-using ConfHall.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ConfHall.Domain.Repositories
+﻿namespace ConfHall.Domain.Repositories
 {
+    using ConfHall.Domain.Data;
+    using ConfHall.Domain.Entities;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Linq;
+
     /// <summary>
     /// 
     /// </summary>
@@ -95,7 +93,6 @@ namespace ConfHall.Domain.Repositories
             {
                 throw new ArgumentNullException("entity");
             }
-
             try
             {
                 Reservation entity = _entities.Where(p => p.Id.Equals(Id)).SingleOrDefault();

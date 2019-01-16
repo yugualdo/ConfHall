@@ -120,6 +120,10 @@
             this.UserRepository.Update(user);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UserModel GetCurrentUser()
         {
             UserModel CurrentUSer = null;
@@ -140,6 +144,12 @@
             return CurrentUSer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userModel"></param>
+        /// <returns></returns>
         private bool VerifyPasswordHash(User user, UserModel userModel)
         {
             var passwordhash = this.hashingService.HashPassword(user, userModel.PasswordHash);

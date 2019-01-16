@@ -22,7 +22,7 @@
         /// <summary>
         /// Gets All elements TEntity.
         /// </summary>
-        /// <returns>IEnumerable<TEntity></returns>
+        /// <returns>IEnumerable&lt;TEntity&gt;</returns>
         IQueryable<TEntity> GetAll();
 
         /// <summary>

@@ -9,16 +9,13 @@
     public class AuditableEntity<Tkey> : BaseEntity<Tkey>
     {
         #region Constructor
-
         /// <summary>
         /// 
         /// </summary>
         public AuditableEntity() { }
-
         #endregion
 
         #region Properties
-
         /// <summary>
         /// Gets or sets the date on which object was created.
         /// </summary>
@@ -64,7 +61,6 @@
             get;
             set;
         }
-
         #endregion
     }
 }
